@@ -7,10 +7,18 @@ let backResBottom = document.getElementById("back-res-bottom");
 let gif = document.getElementById("gif");
 let btnDelete = document.getElementById("btn-delete");
 let mode = document.getElementById("mode");
+let equalAfter = false;
 
 btn.addEventListener(
   "click",
   (e) => {
+    //let numbersArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    //
+    //if(equalAfter && numbersArray.includes(element.textContent)){
+    //  btnC();
+    //  equalAfter = false;
+    //}
+
     gif.className = "hidden";
     let element = e.target;
 
@@ -26,6 +34,10 @@ btn.addEventListener(
       case "8":
       case "9":
       case ".":
+        if (equalAfter) {
+          btnC();
+          equalAfter = false;
+        }
         result.textContent = result.textContent + element.textContent;
         break;
       case "+":
@@ -35,19 +47,23 @@ btn.addEventListener(
       case "%":
       case "√":
       case "±":
+        equalAfter = false;
         result.textContent =
           result.textContent + " " + element.textContent + " ";
         break;
       case "×":
+        equalAfter = false;
         result.textContent = result.textContent + " " + "*" + " ";
         break;
       case "÷":
+        equalAfter = false;
         result.textContent = result.textContent + " " + "/" + " ";
         break;
       case "=":
         btnEqual();
         break;
       case "C":
+        equalAfter = false;
         btnC();
         break;
       default:
@@ -167,6 +183,8 @@ function btnEqual() {
     backResBottom.textContent = "";
     gif.className = "show";
   }
+
+  equalAfter = true;
 }
 
 function btnC() {
