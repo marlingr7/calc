@@ -45,9 +45,16 @@ btn.addEventListener(
       case "(":
       case ")":
       case "%":
+        equalAfter = false;
+        result.textContent =
+          result.textContent + " " + element.textContent + " ";
+        break;
       case "√":
       case "±":
-        equalAfter = false;
+        if (equalAfter) {
+          btnC();
+          equalAfter = false;
+        }
         result.textContent =
           result.textContent + " " + element.textContent + " ";
         break;
